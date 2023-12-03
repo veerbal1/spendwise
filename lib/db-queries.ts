@@ -30,3 +30,36 @@ export const getTotalMonthlyExpenses = async (month: number, year: number) => {
     };
   }
 };
+
+export const getMonthlyExpenses = async (month: number, year: number) => {
+  const session = await auth();
+  const userId = session?.user.id;
+  try {
+    const { rows, rowCount } = await sql`
+    SELECT
+      spendwise_expenses.id,
+      spendwise_expenses.description,
+      spendwise_expenses.amount,
+      spendwise_categories.name as category_name
+    FROM 
+        spendwise_expenses
+    INNER JOIN 
+      spendwise_categories
+    ON
+      spendwise_expenses.category_id = spendwise_categories.id
+    WHERE
+      spendwise_expenses.user_id = ${userId}
+    `;
+    return {
+      status: 'success',
+      message: 'Expenses calculated',
+      rows,
+      rowCount,
+    };
+  } catch (error) {
+    return {
+      status: 'failed',
+      message: 'Something went wrong',
+    };
+  }
+};

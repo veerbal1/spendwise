@@ -1,10 +1,9 @@
 'use server';
-import { auth, signIn, signOut } from '@/auth';
+import { signIn, signOut } from '@/auth';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
-import { createClient, sql } from '@vercel/postgres';
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import client from './db-connection';
 
 export async function authenticate(
   prevState: string | undefined,
@@ -32,8 +31,6 @@ export async function signUpAction(
 ) {
   let success = false;
   try {
-    const client = createClient();
-    await client.connect();
     const formDataObject = Object.fromEntries(formData);
     // Validate the form data using the Zod schema
     const validatedData = signUpSchema.parse(formDataObject);
@@ -48,7 +45,6 @@ export async function signUpAction(
     const { rows } = await client.sql`
       INSERT INTO users(name, email, password) VALUES(${validatedData.name}, ${validatedData.email}, ${hashedPassword});`;
     console.log(rows);
-    await client.end();
     success = true;
     return 'User Submitted Successfully';
   } catch (error) {
@@ -70,5 +66,16 @@ export async function signUpAction(
 }
 
 export async function logout() {
+  await client.end();
   await signOut();
+}
+
+export async function getThisMonthExpenses(month: number) {
+  try {
+  } catch (error) {
+    return {
+      status: 'failed',
+      message: 'Something went wrong',
+    };
+  }
 }

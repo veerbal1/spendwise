@@ -69,13 +69,3 @@ export async function logout() {
   await client.end();
   await signOut();
 }
-
-export async function getThisMonthExpenses(month: number) {
-  try {
-  } catch (error) {
-    return {
-      status: 'failed',
-      message: 'Something went wrong',
-    };
-  }
-}

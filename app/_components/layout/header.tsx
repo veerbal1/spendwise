@@ -1,5 +1,5 @@
-import AvatarUI from './avatar';
-import Logo from './logo';
+import AvatarUI from '../avatar';
+import Logo from '../logo';
 
 function Header() {
   return (

@@ -5,11 +5,6 @@ import { cn } from '@/lib/utils';
 import { UserAuthForm } from '../_components/user-auth-form';
 import { buttonVariants } from '@/components/ui/button';
 
-export const metadata: Metadata = {
-  title: 'Authentication',
-  description: 'Authentication forms built using the components.',
-};
-
 export default function AuthenticationPage() {
   return (
     <>

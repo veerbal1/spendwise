@@ -74,6 +74,7 @@ export const getRecentlyAddedExpenses = async () => {
     ORDER BY 
       created_at 
     DESC
+    LIMIT 5
     `;
     return {
       status: 'success',

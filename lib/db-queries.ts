@@ -56,6 +56,37 @@ export const getTodaysTotalExpenses = async (today: string) => {
     };
   }
 };
+export const getRecentlyAddedExpenses = async () => {
+  const session = await auth();
+  const userId = session?.user.id;
+  try {
+    const { rows } = await sql`
+    SELECT
+      id,
+      description,
+      amount,
+      date,
+      created_at
+    FROM 
+        spendwise_expenses
+    WHERE
+      spendwise_expenses.user_id = ${userId}
+    ORDER BY 
+      created_at 
+    DESC
+    `;
+    return {
+      status: 'success',
+      message: "Today's Expenses calculated",
+      rows,
+    };
+  } catch (error) {
+    return {
+      status: 'failed',
+      message: 'Something went wrong',
+    };
+  }
+};
 
 export const getUserExpenses = async (startDate: string, endDate: string) => {
   const session = await auth();

@@ -4,6 +4,7 @@ import TodaysTotalExpenses from '../_components/cards/todays-expenses';
 import AddExpense from '../_components/forms/add-expense';
 import MonthlyExpensesTable from '../_components/tables/monthly-expenses';
 import TodaysExpensesTable from '../_components/tables/todays-expenses';
+import RecentlyAddedItems from '../_components/tables/recent-added-items';
 
 async function Dashboard() {
   return (
@@ -23,6 +24,9 @@ async function Dashboard() {
           </Suspense>
         </div>
         <div className="flex flex-col gap-6">
+          <Suspense fallback="Getting recently added items...">
+            <RecentlyAddedItems />
+          </Suspense>
           {/* <TodaysExpensesTable /> */}
           {/* <MonthlyExpensesTable /> */}
         </div>

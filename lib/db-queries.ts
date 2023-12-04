@@ -3,7 +3,7 @@
 import { auth } from '@/auth';
 import { sql } from '@vercel/postgres';
 
-export const getTotalMonthlyExpenses = async (month: number, year: number) => {
+export const getMonthlyTotalExpenses = async (month: number, year: number) => {
   const session = await auth();
   const userId = session?.user.id;
   try {
@@ -31,7 +31,7 @@ export const getTotalMonthlyExpenses = async (month: number, year: number) => {
   }
 };
 
-export const getMonthlyExpenses = async (month: number, year: number) => {
+export const getUserExpenses = async (startDate: string, endDate: string) => {
   const session = await auth();
   const userId = session?.user.id;
   try {

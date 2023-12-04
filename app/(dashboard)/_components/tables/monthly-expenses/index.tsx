@@ -6,14 +6,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getMonthlyExpenses } from '@/lib/db-queries';
+import { getUserExpenses } from '@/lib/db-queries';
 import { formatCurrencyInINR } from '@/lib/format';
 
 async function MonthlyExpensesTable() {
   const date = new Date();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  const { rows } = await getMonthlyExpenses(month, year);
+  const { rows } = await getUserExpenses(month, year);
   return (
     <Table>
       <TableHeader>

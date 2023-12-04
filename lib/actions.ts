@@ -94,6 +94,7 @@ export async function addExpense(prevState: any, formData: FormData) {
           )
     `;
     revalidatePath('/dashboard');
+    revalidatePath('/expense-log');
     await client.end();
     return {
       status: 'success',
@@ -118,6 +119,7 @@ export async function deleteExpense(id: string) {
     `;
     console.log('Item deleted successfully');
     revalidatePath('/dashboard');
+    revalidatePath('/expense-log');
     return {
       status: 'success',
       message: 'Expense deleted successfully',

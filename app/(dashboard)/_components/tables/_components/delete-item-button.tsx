@@ -15,17 +15,7 @@ const initialState = {
 function DeleteItemButton({ id }: { id: string }) {
   const dispatchWrapper = () => deleteExpense(id);
   const [state, formAction] = useFormState(dispatchWrapper, initialState);
-  useEffect(() => {
-    switch (state.status) {
-      case 'success':
-        toast.success(state.message);
-        break;
-      case 'failed':
-        toast.error(state.message);
-      default:
-        break;
-    }
-  }, [state.status, state.message]);
+
   return (
     <form action={formAction}>
       <SubmitButton />
@@ -38,7 +28,11 @@ const SubmitButton = () => {
 
   return (
     <Button disabled={pending} className="bg-transparent">
-      {pending ? <ReloadIcon className='animate-spin'/> : <TrashIcon className="text-red-500" />}
+      {pending ? (
+        <ReloadIcon className="animate-spin text-red-500" />
+      ) : (
+        <TrashIcon className="text-red-500" />
+      )}
     </Button>
   );
 };

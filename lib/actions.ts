@@ -108,6 +108,29 @@ export async function addExpense(prevState: any, formData: FormData) {
   }
 }
 
+export async function deleteExpense(id: string) {
+  console.log('DELETE Expense', id);
+  try {
+    const client = createClient();
+    await client.connect();
+    await client.sql`
+      DELETE FROM spendwise_expenses WHERE id = ${id};
+    `;
+    console.log('Item deleted successfully');
+    revalidatePath('/dashboard');
+    return {
+      status: 'success',
+      message: 'Expense deleted successfully',
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 'failed',
+      message: 'Something went wrong',
+    };
+  }
+}
+
 /** 
  * addExpense(userId, amount, categoryId, description, date)
 

@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/popover';
 import { logout } from '@/lib/actions';
 import SignoutButton from './signout-button';
+import { getInitialsFromName } from '@/lib/format';
 
 async function AvatarUI() {
   const session = await auth();
@@ -16,7 +17,9 @@ async function AvatarUI() {
     <Popover>
       <PopoverTrigger asChild>
         <Avatar className="">
-          <AvatarFallback>VS</AvatarFallback>
+          <AvatarFallback>
+            {getInitialsFromName(user?.name as string)}
+          </AvatarFallback>
         </Avatar>
       </PopoverTrigger>
       <PopoverContent>

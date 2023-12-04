@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { useFormState, useFormStatus } from 'react-dom';
-import CategorySelector from './_components/category-selector';
 import { addExpense } from '@/lib/actions';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -34,16 +33,9 @@ function AddExpense() {
   return (
     <div className="m-6 mt-6 w-[300px]">
       <form ref={formRef} action={dispatch} className="flex flex-col gap-2">
-        <Input name="expense" placeholder="e.g Milk" required />
+        <Input name="expense" placeholder="Item name" required />
         <CurrentTime />
-        <Input
-          name="amount"
-          placeholder="e.g 10"
-          required
-          type="number"
-          min={0}
-        />
-        <CategorySelector />
+        <Input name="amount" placeholder="₹" required type="number" min={0} />
         <SubmitButton />
       </form>
     </div>
@@ -65,7 +57,7 @@ const CurrentTime = () => {
 const SubmitButton = () => {
   const { pending } = useFormStatus();
   return (
-    <Button>
+    <Button disabled={pending}>
       {pending ? <ReloadIcon className="mr-2 animate-spin" /> : null}
       Add new item
     </Button>

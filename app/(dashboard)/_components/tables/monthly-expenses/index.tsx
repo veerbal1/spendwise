@@ -25,7 +25,6 @@ async function MonthlyExpensesTable() {
         <TableRow>
           <TableHead>Name</TableHead>
           <TableHead>Amount</TableHead>
-          <TableHead>Category</TableHead>
           <TableHead>Date</TableHead>
         </TableRow>
       </TableHeader>
@@ -34,7 +33,6 @@ async function MonthlyExpensesTable() {
           <TableRow key={row.id}>
             <TableCell>{row.description}</TableCell>
             <TableCell>{formatCurrencyInINR(row.amount)}</TableCell>
-            <TableCell>{row.category_name}</TableCell>
             <TableCell>{row.date.toDateString()}</TableCell>
           </TableRow>
         ))}

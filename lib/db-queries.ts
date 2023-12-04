@@ -46,7 +46,7 @@ export const getTodaysTotalExpenses = async (today: string) => {
     `;
     return {
       status: 'success',
-      message: 'Today\'s Expenses calculated',
+      message: "Today's Expenses calculated",
       totalExpense: rows.length > 0 ? rows[0].total_expenses : 0,
     };
   } catch (error) {
@@ -63,17 +63,12 @@ export const getUserExpenses = async (startDate: string, endDate: string) => {
   try {
     const { rows, rowCount } = await sql`
     SELECT
-      spendwise_expenses.id,
-      spendwise_expenses.description,
-      spendwise_expenses.amount,
-      spendwise_expenses.date,
-      spendwise_categories.name as category_name
+      id,
+      description,
+      amount,
+      date
     FROM 
         spendwise_expenses
-    INNER JOIN 
-      spendwise_categories
-    ON
-      spendwise_expenses.category_id = spendwise_categories.id
     WHERE
       spendwise_expenses.user_id = ${userId}
     AND

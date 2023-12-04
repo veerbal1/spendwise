@@ -81,15 +81,17 @@ export async function addExpense(prevState: any, formData: FormData) {
     await client.connect();
     const session = await auth();
     const userId = session?.user.id;
-    const { expense, amount, category_id, date } = Object.fromEntries(formData);
+    const { expense, amount, date } = Object.fromEntries(formData);
     await client.sql`
       INSERT INTO
         spendwise_expenses
-        (user_id, amount, category_id, description, date)
-      VALUES
-        (${userId as string}, ${amount as string}, ${category_id as string}, ${
-      expense as string
-    } ,${date as string})
+        (user_id, amount, description, date)
+      VALUES(
+          ${userId as string}, 
+          ${amount as string},
+          ${expense as string},
+          ${date as string}
+          )
     `;
     revalidatePath('/dashboard');
     await client.end();

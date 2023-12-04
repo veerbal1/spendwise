@@ -4,7 +4,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full">
       <Header />
-      <div className="pt-5">{children}</div>
+      <div className="pt-5 p-5">{children}</div>
     </div>
   );
 }

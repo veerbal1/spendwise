@@ -27,7 +27,7 @@ async function MonthlyExpensesTable() {
           <TableHead>Name</TableHead>
           <TableHead>Amount</TableHead>
           <TableHead>Date</TableHead>
-          <TableHead>Action</TableHead>
+          <TableHead className='text-right'>Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -36,7 +36,7 @@ async function MonthlyExpensesTable() {
             <TableCell>{row.description}</TableCell>
             <TableCell>{formatCurrencyInINR(row.amount)}</TableCell>
             <TableCell>{row.date.toDateString()}</TableCell>
-            <TableCell>
+            <TableCell className='text-right'>
               <DeleteItemButton id={row.id} />
             </TableCell>
           </TableRow>

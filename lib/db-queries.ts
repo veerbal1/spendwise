@@ -30,6 +30,32 @@ export const getMonthlyTotalExpenses = async (month: number, year: number) => {
     };
   }
 };
+export const getTodaysTotalExpenses = async (today: string) => {
+  const session = await auth();
+  const userId = session?.user.id;
+  try {
+    const { rows } = await sql`
+    SELECT
+      SUM(amount) AS total_expenses
+    FROM 
+      spendwise_expenses
+    WHERE
+      user_id = ${userId}
+    AND 
+      date = ${today};
+    `;
+    return {
+      status: 'success',
+      message: 'Today\'s Expenses calculated',
+      totalExpense: rows.length > 0 ? rows[0].total_expenses : 0,
+    };
+  } catch (error) {
+    return {
+      status: 'failed',
+      message: 'Something went wrong',
+    };
+  }
+};
 
 export const getUserExpenses = async (startDate: string, endDate: string) => {
   const session = await auth();

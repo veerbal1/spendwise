@@ -1,9 +1,11 @@
 'use server';
-import { signIn, signOut } from '@/auth';
+import { auth, signIn, signOut } from '@/auth';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
 import client from './db-connection';
+import { sql } from '@vercel/postgres';
+import { revalidatePath } from 'next/cache';
 
 export async function authenticate(
   prevState: string | undefined,
@@ -68,4 +70,32 @@ export async function signUpAction(
 export async function logout() {
   await client.end();
   await signOut();
+}
+
+export async function addExpense(prevState: any, formData: FormData) {
+  try {
+    const session = await auth();
+    const userId = session?.user.id;
+    const { expense, amount, category_id, date } = Object.fromEntries(formData);
+    await sql`
+      INSERT INTO
+        spendwise_expenses
+        (user_id, amount, category_id, description, date)
+      VALUES
+        (${userId as string}, ${amount as string}, ${category_id as string}, ${
+      expense as string
+    } ,${date as string})
+    `;
+    revalidatePath('/dashboard');
+    return {
+      status: 'success',
+      message: 'Expense added successfully',
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 'failed',
+      message: 'Something went wrong',
+    };
+  }
 }

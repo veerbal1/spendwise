@@ -17,9 +17,11 @@ async function MonthlyExpensesTable() {
   return (
     <Table>
       <TableHeader>
-        <TableHead>Name</TableHead>
-        <TableHead>Category</TableHead>
-        <TableHead>Amount</TableHead>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Category</TableHead>
+          <TableHead>Amount</TableHead>
+        </TableRow>
       </TableHeader>
       <TableBody>
         {rows?.map((row) => (

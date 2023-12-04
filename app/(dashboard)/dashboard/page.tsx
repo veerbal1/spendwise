@@ -8,7 +8,7 @@ async function Dashboard() {
   return (
     <div className="w-full flex justify-center">
       <div className="grid grid-cols-1 gap-4 w-full">
-        <div className="flex gap-4 justify-center md:justify-start">
+        <div className="flex gap-4 justify-center md:justify-start flex-wrap">
           <ThisMonthExpenses />
           <TodaysTotalExpenses />
         </div>

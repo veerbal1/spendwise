@@ -67,7 +67,7 @@ const SubmitButton = () => {
   return (
     <Button>
       {pending ? <ReloadIcon className="mr-2 animate-spin" /> : null}
-      Submit
+      Add new item
     </Button>
   );
 };

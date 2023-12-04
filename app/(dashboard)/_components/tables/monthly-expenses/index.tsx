@@ -1,6 +1,7 @@
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -19,6 +20,7 @@ async function MonthlyExpensesTable() {
   );
   return (
     <Table>
+      <TableCaption>Monthly expenses</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>

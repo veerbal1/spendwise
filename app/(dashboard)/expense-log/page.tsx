@@ -1,5 +1,5 @@
 function ExpenseLog() {
-  return <div></div>;
+  return <div>Expense Log</div>;
 }
 
 export default ExpenseLog;

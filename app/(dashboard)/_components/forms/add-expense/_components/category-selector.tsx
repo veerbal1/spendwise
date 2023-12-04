@@ -24,7 +24,7 @@ function CategorySelector() {
       });
   }, []);
   return (
-    <div className='relative'>
+    <div className="relative">
       <Select disabled={pending} name="category_id" required>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select category" className="w-[250px]" />

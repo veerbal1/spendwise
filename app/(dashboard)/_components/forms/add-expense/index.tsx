@@ -51,14 +51,14 @@ function AddExpense() {
 }
 
 const CurrentTime = () => {
-  const [time, setTime] = useState(new Date().toDateString());
-  useEffect(() => {
-    setInterval(() => {
-      setTime(new Date().toDateString());
-    }, 1000);
-  }, []);
   return (
-    <Input className="hidden" name="date" value={time} readOnly required />
+    <Input
+      type="date"
+      name="date"
+      required
+      defaultValue={new Date().toISOString().split('T')[0]}
+      max={new Date().toISOString().split('T')[0]}
+    />
   );
 };
 

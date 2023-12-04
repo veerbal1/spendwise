@@ -40,6 +40,7 @@ export const getUserExpenses = async (startDate: string, endDate: string) => {
       spendwise_expenses.id,
       spendwise_expenses.description,
       spendwise_expenses.amount,
+      spendwise_expenses.date,
       spendwise_categories.name as category_name
     FROM 
         spendwise_expenses
@@ -49,6 +50,10 @@ export const getUserExpenses = async (startDate: string, endDate: string) => {
       spendwise_expenses.category_id = spendwise_categories.id
     WHERE
       spendwise_expenses.user_id = ${userId}
+    AND
+      spendwise_expenses.date >= ${startDate}
+    AND
+      spendwise_expenses.date <= ${endDate};
     `;
     return {
       status: 'success',
@@ -63,3 +68,27 @@ export const getUserExpenses = async (startDate: string, endDate: string) => {
     };
   }
 };
+
+// getExpenseById(expenseId)
+// Fetch detailed information about a specific expense by its ID.
+
+// getExpensesByCategory(userId, categoryId, startDate, endDate)
+// Retrieve expenses for a user filtered by a specific category and date range.
+
+// getUserCategories(userId)
+// Fetch all the expense categories associated with a user.
+
+// getMonthlyExpenseBreakdown(userId, year, month)
+// Provide a breakdown of expenses by category for a specific month.
+
+// getAnnualExpenseSummary(userId, year)
+// Summarize the total expenses for each month in a given year.
+
+// getUserBudgets(userId)
+// Retrieve all budget settings for a user.
+
+// getRecentTransactions(userId, limit)
+// Fetch the most recent transactions for a user, with a limit to the number of transactions returned.
+
+// getUserAlerts(userId)
+// Retrieve any alerts or notifications related to the user's expenses or budget.

@@ -105,3 +105,24 @@ export async function addExpense(prevState: any, formData: FormData) {
     };
   }
 }
+
+/** 
+ * addExpense(userId, amount, categoryId, description, date)
+
+Add a new expense entry to the database.
+updateExpense(expenseId, amount, categoryId, description, date)
+
+Update an existing expense entry.
+deleteExpense(expenseId)
+
+Delete an expense entry from the database.
+addCategory(userId, categoryName)
+
+Add a new category to a user's list of categories.
+deleteCategory(categoryId)
+
+Delete a category from the user's list.
+updateUserBudget(userId, budgetDetails)
+
+Update budget settings for a user.
+ */

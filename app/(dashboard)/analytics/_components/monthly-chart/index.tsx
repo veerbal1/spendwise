@@ -11,7 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { format } from 'date-fns';
+import { format, compareAsc } from 'date-fns';
 
 ChartJS.register(
   CategoryScale,
@@ -37,14 +37,16 @@ export const options = {
 };
 
 function MonthlyChart({ rows }: { rows: QueryResultRow[] | undefined }) {
-  const currentMonthData = rows?.filter((row) => {
-    const expenseDate = new Date(row.date);
-    const today = new Date();
-    return (
-      expenseDate.getMonth() === today.getMonth() &&
-      expenseDate.getFullYear() === today.getFullYear()
-    );
-  });
+  const currentMonthData = rows
+    ?.filter((row) => {
+      const expenseDate = new Date(row.date);
+      const today = new Date();
+      return (
+        expenseDate.getMonth() === today.getMonth() &&
+        expenseDate.getFullYear() === today.getFullYear()
+      );
+    })
+    .sort((a, b) => compareAsc(new Date(a.date), new Date(b.date)));
   const summedDailyExpenses = currentMonthData?.reduce((acc, row) => {
     const expenseDate = new Date(row.date).toISOString().split('T')[0];
     const formattedDate = format(expenseDate, 'PP');

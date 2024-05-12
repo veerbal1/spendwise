@@ -10,6 +10,10 @@ const navLinks = [
     title: 'Expenses',
     link: '/expense-log',
   },
+  {
+    title: 'Analytics',
+    link: '/analytics',
+  },
 ];
 
 function SidebarDashboard() {

@@ -45,7 +45,7 @@ function YearlyChart({ rows }: { rows: QueryResultRow[] | undefined }) {
     const year = new Date(date).getFullYear();
     const month = new Date(date).getMonth();
     const yearMonth = `${year}-${month}`;
-    const formatted = format(yearMonth, 'MMMM yyyy');
+    const formatted = format(new Date(date), 'MMMM yyyy');
     if (!acc[formatted]) {
       acc[formatted] = { year, month, sum: 0 };
     }

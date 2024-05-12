@@ -70,13 +70,12 @@ function MonthlyChart({ rows }: { rows: QueryResultRow[] | undefined }) {
       {
         label: 'Expenses',
         data: labels.map((key) => summedDailyExpenses[key]),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: 'rgb(0, 128, 0)',
+        backgroundColor: 'rgba(0, 128, 0, 0.5)',
       },
     ],
   };
 
-  console.log('currentMonthData', summedDailyExpenses);
   return <Line options={options} data={data} />;
 }
 

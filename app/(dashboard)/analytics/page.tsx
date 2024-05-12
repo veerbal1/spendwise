@@ -13,7 +13,7 @@ async function Anlytics() {
 
   console.log('rows', rows);
   return (
-    <div className="flex gap-2 w-full h-full">
+    <div className="flex flex-col md:flex-row gap-2 w-full h-full">
       <div className="flex-1">
         <MonthlyChart rows={rows} />
       </div>

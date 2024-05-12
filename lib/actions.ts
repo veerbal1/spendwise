@@ -97,12 +97,14 @@ export async function addExpense(prevState: any, formData: FormData) {
     revalidatePath('/expense-log');
     await client.end();
     return {
+      id: Math.random().toString(),
       status: 'success',
       message: 'Expense added successfully',
     };
   } catch (error) {
     console.log(error);
     return {
+      id: Math.random().toString(),
       status: 'failed',
       message: 'Something went wrong',
     };

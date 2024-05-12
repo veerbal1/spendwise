@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const initialState = {
+  id: '',
   status: '',
   message: '',
 };
@@ -28,7 +29,7 @@ function AddExpense() {
       default:
         break;
     }
-  }, [state.status, state.message, formRef]);
+  }, [state.status, state.message, formRef, state.id]);
 
   return (
     <div className="m-6 mt-6 w-[300px]">
